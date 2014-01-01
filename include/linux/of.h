@@ -25,9 +25,13 @@
 static inline bool of_property_read_bool(const struct device_node *np,
 					 const char *propname)
 {
+#ifdef CONFIG_OF
 	struct property *prop = of_find_property(np, propname, NULL);
 
 	return prop ? true : false;
+#else
+	return false;
+#endif
 }
 #endif
 

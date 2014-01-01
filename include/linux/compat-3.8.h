@@ -54,6 +54,7 @@ extern bool hid_ignore(struct hid_device *);
  * locking in the kref_put path can be deferred to the actual removal from
  * the lookup structure and RCU lookups become trivial.
  */
+#define kref_get_unless_zero LINUX_BACKPORT(kref_get_unless_zero)
 static inline int __must_check kref_get_unless_zero(struct kref *kref)
 {
 	return atomic_add_unless(&kref->refcount, 1, 0);
